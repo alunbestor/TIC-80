@@ -146,7 +146,7 @@ pub mod sys {
         pub fn sync(mask: i32, bank: u8, to_cart: bool);
         pub fn time() -> f32;
         pub fn tstamp() -> u32;
-        pub fn trace(text: *const u8, color: u8);
+        pub fn trace(text: *const u8, color: i8);
         pub fn tri(x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32, color: u8);
         pub fn trib(x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32, color: u8);
         pub fn ttri(
@@ -448,11 +448,11 @@ pub fn map(opts: MapOptions) {
     }
 }
 
-pub fn mget(x: i32, y: i32) -> i32 {
+pub fn mget(x: i32, y: i32) -> u8 {
     unsafe { sys::mget(x, y) }
 }
 
-pub fn mset(x: i32, y: i32, value: i32) {
+pub fn mset(x: i32, y: i32, value: u8) {
     unsafe { sys::mset(x, y, value) }
 }
 
@@ -649,7 +649,7 @@ macro_rules! font {
     };
 }
 
-pub fn trace_alloc(text: impl AsRef<str>, color: u8) {
+pub fn trace_alloc(text: impl AsRef<str>, color: i8) {
     let text = CString::new(text.as_ref()).unwrap();
     unsafe { sys::trace(text.as_ptr() as *const u8, color) }
 }
@@ -716,7 +716,7 @@ pub unsafe fn vbank(bank: u8) {
     sys::vbank(bank);
 }
 
-pub fn pmem_set(address: i32, value: i32) {
+pub fn pmem_set(address: i32, value: u32) {
     unsafe {
         sys::pmem(address, value as i64);
     }

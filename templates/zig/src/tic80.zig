@@ -119,15 +119,15 @@ pub const raw = struct {
     pub extern fn map(x: i32, y: i32, w: i32, h: i32, sx: i32, sy: i32, trans_colors: ?[*]const u8, color_count: i32, scale: i32, remap: i32) void;
     pub extern fn memcpy(to: u32, from: u32, length: u32) void;
     pub extern fn memset(addr: u32, value: u8, length: u32) void;
-    pub extern fn mget(x: i32, y:i32) i32;
+    pub extern fn mget(x: i32, y:i32) u8;
     pub extern fn mouse(data: *MouseData) void;
-    pub extern fn mset(x: i32, y:i32, value: bool) void;
+    pub extern fn mset(x: i32, y:i32, value: u8) void;
     pub extern fn music(track: i32, frame: i32, row: i32, loop: bool, sustain: bool, tempo: i32, speed: i32) void;
     pub extern fn peek(addr: u32, bits: i32) u8;
     pub extern fn peek4(addr4: u32) u8;
     pub extern fn peek2(addr2: u32) u8;
     pub extern fn peek1(bitaddr: u32) u8;
-    pub extern fn pix(x: i32, y:i32, color: i32) void;
+    pub extern fn pix(x: i32, y:i32, color: i8) u8;
     pub extern fn pmem(index: u32, value: i64) u32;
     pub extern fn poke(addr: u32, value: u8, bits: i32) void;
     pub extern fn poke4(addr4: u32, value: u8) void;
@@ -144,7 +144,7 @@ pub const raw = struct {
     pub extern fn tri(x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32, color: i32) void;
     pub extern fn trib(x1: f32, y1: f32, x2: f32, y2: f32, x3: f32, y3: f32, color: i32) void;
     pub extern fn time() f32;
-    pub extern fn trace(text: [*:0]const u8, color: i32) void;
+    pub extern fn trace(text: [*:0]const u8, color: i8) void;
     pub extern fn tstamp() u64;
     pub extern fn vbank(bank: i32) u8;
 };
@@ -223,11 +223,11 @@ pub fn map(args: MapArgs) void {
 }
 
 pub fn pix(x: i32, y: i32, color: u8) void {
-    raw.pix(x,y,color);
+    _ = raw.pix(x,y,color);
 }
 
 pub fn getpix(x: i32, y: i32) u8 {
-    raw.pix(x,y, -1);
+    return raw.pix(x,y, -1);
 }
 
 // pub extern fn spr(id: i32, x: i32, y: i32, trans_colors: [*]u8, color_count: i32, scale: i32, flip: i32, rotate: i32, w: i32, h: i32) void;
@@ -415,11 +415,11 @@ pub fn nosfx() void {
 // ------
 // MEMORY
 
-pub fn pmemset(index: u32, value: u3) void {
-    raw.pmem(index, value);
+pub fn pmemset(index: i32, value: u32) void {
+    _ = raw.pmem(index, value);
 }
 
-pub fn pmemget(index: u32) u32 {
+pub fn pmemget(index: i32) u32 {
     return raw.pmem(index, -1);
 }
 
@@ -450,7 +450,7 @@ pub const reset = raw.reset;
 pub fn trace(text: []const u8) void {
     var buff : [MAX_STRING_SIZE:0]u8 = undefined;
     sliceToZString(text, &buff, MAX_STRING_SIZE);
-    raw.trace(&buff);
+    raw.trace(&buff, -1);
 }
 
 const SectionFlags = packed struct {

@@ -439,7 +439,7 @@ m3ApiRawFunction(wasmtic_fset)
 
 m3ApiRawFunction(wasmtic_mget)
 {
-    m3ApiReturnType  (int32_t)
+    m3ApiReturnType  (uint8_t)
 
     m3ApiGetArg      (int32_t, x);
     m3ApiGetArg      (int32_t, y);
@@ -455,7 +455,7 @@ m3ApiRawFunction(wasmtic_mset)
 {
     m3ApiGetArg      (int32_t, x);
     m3ApiGetArg      (int32_t, y);
-    m3ApiGetArg      (int32_t, value);
+    m3ApiGetArg      (uint8_t, value);
 
     tic_mem* tic = (tic_mem*)getWasmCore(runtime);
 

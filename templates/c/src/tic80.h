@@ -224,13 +224,13 @@ WASM_IMPORT("map")
 void map(int32_t x, int32_t y, int32_t w, int32_t h, int32_t sx, int32_t sy, uint32_t* transcolors, int32_t colorcount, int32_t scale, int32_t remap);
 
 WASM_IMPORT("mget")
-int32_t mget(int32_t x, int32_t y);
+uint8_t mget(int32_t x, int32_t y);
 
 WASM_IMPORT("mouse")
 void mouse(MouseData* data);
 
 WASM_IMPORT("mset")
-void mset(int32_t x, int32_t y, int32_t value);
+void mset(int32_t x, int32_t y, uint8_t value);
 
 WASM_IMPORT("music")
 void music(int32_t track, int32_t frame, int32_t row, bool loop, bool sustain, int32_t tempo, int32_t speed);
@@ -248,7 +248,7 @@ WASM_IMPORT("peek1")
 uint8_t peek1(uint32_t bitaddr);
 
 WASM_IMPORT("pix")
-void pix(int32_t x, int32_t y, int32_t color);
+uint8_t pix(int32_t x, int32_t y, int32_t color);
 
 WASM_IMPORT("pmem")
 uint32_t pmem(uint32_t index, uint32_t value);
@@ -287,7 +287,7 @@ WASM_IMPORT("sync")
 void sync(int32_t mask, int32_t bank, bool tocart);
 
 WASM_IMPORT("trace")
-void trace(const char* txt, int32_t color);
+void trace(const char* txt, int8_t color);
 
 WASM_IMPORT("ttri")
 void ttri(float x1, float y1, float x2, float y2, float x3, float y3, float u1, float v1, float u2, float v2, float u3, float v3, int32_t texsrc, uint32_t* transcolors, int32_t colorcount, float z1, float z2, float z3, bool persp);
