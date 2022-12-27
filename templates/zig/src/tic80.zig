@@ -108,10 +108,10 @@ pub const raw = struct {
     pub extern fn ellib(x: i32, y: i32, a: i32, b: i32, color: i32) void;
     pub extern fn fget(id: i32, flag: u8) bool;
     pub extern fn font(text: [*:0]u8, x: u32, y: i32, trans_colors: ?[*]const u8, color_count: i32, char_width: i32, char_height: i32, fixed: bool, scale: i32, alt: bool) i32;
-    pub extern fn fset(id: i32, flag: u8, value: bool) bool;
+    pub extern fn fset(id: i32, flag: u8, value: bool) void;
     pub extern fn key(keycode: i32) bool;
     pub extern fn keyp(keycode: i32, hold: i32, period: i32) bool;
-    pub extern fn line(x0: i32, y0: i32, x1: i32, y1: i32, color: i32) void;
+    pub extern fn line(x0: f32, y0: f32, x1: f32, y1: f32, color: u8) void;
     pub extern fn map(x: i32, y: i32, w: i32, h: i32, sx: i32, sy: i32, trans_colors: ?[*]const u8, color_count: i32, scale: i32, remap: i32) void;
     pub extern fn memcpy(to: u32, from: u32, length: u32) void;
     pub extern fn memset(addr: u32, value: u8, length: u32) void;
@@ -124,7 +124,7 @@ pub const raw = struct {
     pub extern fn peek2(addr2: u32) u8;
     pub extern fn peek1(bitaddr: u32) u8;
     pub extern fn pix(x: i32, y: i32, color: i8) u8;
-    pub extern fn pmem(index: u32, value: i64) u32;
+    pub extern fn pmem(index: i32, value: i64) u32;
     pub extern fn poke(addr: u32, value: u8, bits: i32) void;
     pub extern fn poke4(addr4: u32, value: u8) void;
     pub extern fn poke2(addr2: u32, value: u8) void;

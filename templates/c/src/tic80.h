@@ -218,7 +218,7 @@ WASM_IMPORT("keyp")
 bool keyp(int32_t keycode, int32_t hold, int32_t period);
 
 WASM_IMPORT("line")
-void line(float x0, float y0, float x1, float y1, int8_t color);
+void line(float x0, float y0, float x1, float y1, uint8_t color);
 
 WASM_IMPORT("map")
 void map(int32_t x, int32_t y, int32_t w, int32_t h, int32_t sx, int32_t sy, uint32_t* transcolors, int32_t colorcount, int32_t scale, int32_t remap);

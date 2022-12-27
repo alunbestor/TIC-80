@@ -67,7 +67,7 @@ int font(const char* text, int x, int y, uint* transcolors, int colorcount, int 
 bool fset(int id, ubyte flag, bool value);
 bool key(int keycode);
 bool keyp(int keycode, int hold, int period);
-void line(float x0, float y0, float x1, float y1, byte color);
+void line(float x0, float y0, float x1, float y1, ubyte color);
 void map(int x, int y, int w, int h, int sx, int sy, uint* transcolors, int colorcount, int scale, int remap);
 void memcpy(uint copyto, uint copyfrom, uint length);
 void memset(uint addr, ubyte value, uint length);

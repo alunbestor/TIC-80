@@ -150,7 +150,7 @@ m3ApiRawFunction(wasmtic_line)
     m3ApiGetArg      (float, y0)
     m3ApiGetArg      (float, x1)
     m3ApiGetArg      (float, y1)
-    m3ApiGetArg      (int8_t, color)
+    m3ApiGetArg      (uint8_t, color)
 
     tic_mem* tic = (tic_mem*)getWasmCore(runtime);
 
